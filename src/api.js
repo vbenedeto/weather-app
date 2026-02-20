@@ -20,8 +20,11 @@ export async function getData(location) {
 
     const result = await response.json();
     console.log(result);
+
+    return result;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 
