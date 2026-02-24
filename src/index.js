@@ -1,16 +1,24 @@
 import './styles.css';
 import { getData } from './api.js';
 import { createWeatherModel } from './weatherDataProcessor.js';
+import { renderWeather, setUpEventListeners } from './domController.js';
 
-async function getWeatherDataObj() {
+async function handleWeatherSearch(locationInput) {
   try {
-    const rawData = await getData();
-    const cleanData = createWeatherModel(rawData);
+    const rawData = await getData(locationInput);
 
-    console.log(cleanData);
+    if (!rawData) {
+      console.error("No data received from API");
+      return;
+    }
+
+    const cleanDataObj = createWeatherModel(rawData);
+    renderWeather(cleanDataObj);
+    console.log("Success! Clean data obj:", cleanDataObj);
+
   } catch (error) {
     console.error(error);
   }
 }
 
-getWeatherDataObj();
+setUpEventListeners(handleWeatherSearch);
