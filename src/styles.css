@@ -1,13 +1,98 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: "Barlow", sans-serif;
+  line-height: 1.6;
 }
 
 #main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('./assets/blue-sky.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
-#search-container { 
+#search-container {
   padding-top: 25px;
+}
+
+#search-container input {
+  padding: 9px 20px 9px 40px;
+  width: 285px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  ;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  outline: none;
+  cursor: pointer;
+}
+
+#form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#search-icon {
+  position: absolute;
+  left: 12px;
+  width: 23px;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+#weather-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 40px;
+  border-radius: 15px;
+  color: white;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+#city-name {
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+#temp {
+  font-size: 60px;
+  font-weight: 600;
+  height: 85px;
+}
+
+#feels-like {
+  font-size: 18px;
+  opacity: 0.8;
+  font-weight: 300;
+  margin-top: -5px;
+}
+
+#timezone {
+  letter-spacing: 2px;
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+#weather-description {
+  text-wrap: wrap;
+}
+
+.weather-container__temp {
+  display: flex;
+  flex-direction: column;
 }
