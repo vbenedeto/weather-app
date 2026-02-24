@@ -1,7 +1,7 @@
 import './styles.css';
 import { getData } from './api.js';
 import { createWeatherModel } from './weatherDataProcessor.js';
-import { setUpEventListeners } from './domController.js';
+import { renderWeather, setUpEventListeners } from './domController.js';
 
 async function handleWeatherSearch(locationInput) {
   try {
@@ -13,7 +13,9 @@ async function handleWeatherSearch(locationInput) {
     }
 
     const cleanDataObj = createWeatherModel(rawData);
+    renderWeather(cleanDataObj);
     console.log("Success! Clean data obj:", cleanDataObj);
+
   } catch (error) {
     console.error(error);
   }

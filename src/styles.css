@@ -67,6 +67,7 @@
 #city-name {
   font-size: 40px;
   letter-spacing: 2px;
+  text-transform: capitalize;
 }
 
 #temp {
@@ -95,4 +96,8 @@
 .weather-container__temp {
   display: flex;
   flex-direction: column;
+}
+
+.hidden { 
+  display: none !important;
 }
