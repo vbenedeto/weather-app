@@ -19,15 +19,17 @@
       </form>
     </div>
 
-    <div id="unit-toggle-container">
-      <input type="radio" id="celsius"  name="unit" value="C" checked>
-      <label for="celsius">°C</label>
-
-      <input type="radio" id="fahrenheit" name="unit" value="F">
-      <label for="fahrenheit">°F</label>
-    </div>
-
     <div id="weather-container" class="hidden">
+      <div id="unit-toggle-container" class="segmented-control">
+        <input type="radio" id="celsius" name="unit" value="C" checked>
+        <label for="celsius">°C</label>
+
+        <input type="radio" id="fahrenheit" name="unit" value="F">
+        <label for="fahrenheit">°F</label>
+
+        <div class="selection-indicator"></div>
+      </div>
+
       <div class="weather-container__header">
         <h1 id="city-name"></h1>
         <p id="timezone"></p>

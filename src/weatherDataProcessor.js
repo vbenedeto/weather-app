@@ -6,9 +6,9 @@ export function createWeatherModel(rawData) {
   return {
     location: rawData.resolvedAddress,
     timezone: rawData.timezone,
-    feelsLikeF: fahrenheitFeelslikeTemp,
+    feelsLikeF: Math.round(fahrenheitFeelslikeTemp),
     feelsLikeC: fahrenheitToCelsius(fahrenheitFeelslikeTemp),
-    tempF: fahrenheitTemp,
+    tempF: Math.round(fahrenheitTemp),
     tempC: fahrenheitToCelsius(fahrenheitTemp),
     description: rawData.description,
     alerts: rawData.alerts ? rawData.alerts.map(item => item.event) : []
