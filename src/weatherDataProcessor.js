@@ -22,7 +22,7 @@ export function createWeatherModel(rawData) {
         tempMinF: Math.round(day.tempmin),
         tempMinC: fahrenheitToCelsius(day.tempmin),
         icon: day.icon,
-        condition: day.condition
+        condition: day.conditions,
       };
     })
   }
