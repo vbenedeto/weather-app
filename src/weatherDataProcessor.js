@@ -4,14 +4,27 @@ export function createWeatherModel(rawData) {
   const fahrenheitFeelslikeTemp = rawData.currentConditions.feelslike;
 
   return {
-    location: rawData.resolvedAddress,
-    timezone: rawData.timezone,
-    feelsLikeF: Math.round(fahrenheitFeelslikeTemp),
-    feelsLikeC: fahrenheitToCelsius(fahrenheitFeelslikeTemp),
-    tempF: Math.round(fahrenheitTemp),
-    tempC: fahrenheitToCelsius(fahrenheitTemp),
-    description: rawData.description,
-    alerts: rawData.alerts ? rawData.alerts.map(item => item.event) : []
+    current: {
+      location: rawData.resolvedAddress,
+      timezone: rawData.timezone,
+      feelsLikeF: Math.round(fahrenheitFeelslikeTemp),
+      feelsLikeC: fahrenheitToCelsius(fahrenheitFeelslikeTemp),
+      tempF: Math.round(fahrenheitTemp),
+      tempC: fahrenheitToCelsius(fahrenheitTemp),
+      description: rawData.description,
+      alerts: rawData.alerts ? rawData.alerts.map(item => item.event) : []
+    },
+    forecast: rawData.days.slice(0, 7).map(day => {
+      return {
+        date: day.datetime,
+        tempMaxF: Math.round(day.tempmax),
+        tempMaxC: fahrenheitToCelsius(day.tempmax),
+        tempMinF: Math.round(day.tempmin),
+        tempMinC: fahrenheitToCelsius(day.tempmin),
+        icon: day.icon,
+        condition: day.condition
+      };
+    })
   }
 }
 
@@ -21,3 +34,4 @@ function fahrenheitToCelsius(f) {
   const celsius = (f - 32) * 5 / 9;
   return Math.round(celsius) + 0;
 }
+
