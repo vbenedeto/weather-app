@@ -8,6 +8,7 @@
 #main {
   display: flex;
   flex-direction: column;
+  gap: 50px;
   align-items: center;
   text-align: center;
   min-height: 100vh;
@@ -53,8 +54,7 @@
   flex-direction: column;
   gap: 15px;
   position: relative;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   padding: 40px;
@@ -158,9 +158,10 @@
 #forecast-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding-bottom: 40px;
+  gap: 30px;
+  padding-bottom: 20px;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .forecast-card {
@@ -203,4 +204,54 @@
 .forecast-temp-min {
   font-size: 16px;
   opacity: 0.8;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 20px 0;
+  margin-top: auto;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.separator {
+  opacity: 0.3;
+}
+
+@media (max-width: 600px) {
+  #weather-container {
+   width: 92%;
+    max-width: none;
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  #forecast-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  #forecast-container {
+    gap: 15px; 
+  }
 }
