@@ -5,6 +5,11 @@
   line-height: 1.6;
 }
 
+:root {
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
 #main {
   display: flex;
   flex-direction: column;
@@ -15,7 +20,7 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transition: background-image 0.8s ease-in-out;
+  transition: background 0.8s ease-in-out;
 }
 
 .day-bg {
@@ -49,7 +54,7 @@
   width: 285px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--glass-border);
   backdrop-filter: blur(5px);
   outline: none;
   cursor: pointer;
@@ -76,7 +81,7 @@
   gap: 15px;
   position: relative;
   margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--glass-bg);
   backdrop-filter: blur(8px);
   padding: 40px;
   border-radius: 15px;
@@ -151,7 +156,7 @@
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border);
 }
 
 .selection-indicator {
@@ -160,7 +165,7 @@
   left: 2px;
   width: calc(50% - 2px);
   height: calc(100% - 4px);
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--glass-border);
   border-radius: 13px;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
@@ -189,11 +194,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--glass-bg);
   backdrop-filter: blur(10px);
   padding: 15px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border);
   min-width: 115px;
   color: white;
 }
