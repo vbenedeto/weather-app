@@ -15,32 +15,44 @@ let currentWeatherData = null;
 let isCelsius = true;
 
 const ICON_MAP = {
-  // Clear Skies
   "clear-day": sunIcon,
   "clear-night": moonIcon,
 
-  // Clouds
   "cloudy": cloudIcon,
   "partly-cloudy-day": cloudyDayIcon,
   "partly-cloudy-night": cloudNigthIcon,
 
-  // Rain/Showers
   "rain": rainIcon,
   "showers-day": rainIcon, 
   "showers-night": rainIcon,
   "thunder-rain": thunderIcon,
 
-  // Snow
   "snow": snowIcon,
   "snow-showers-day": snowIcon,
   "snow-showers-night": snowNightIcon,
 
-  // Misc
   "wind": windIcon,
   "fog": fogIcon,
 
-  // Default
   "default": defaultIcon,
+};
+
+const BG_MAP = {
+  "clear-night": "night-bg",
+  "partly-cloudy-night": "night-bg",
+  "cloudy-night": "night-bg",
+
+  "rain": "rain-bg",
+  "showers-day": "rain-bg",
+  "showers-night": "rain-bg",
+  "thunder-rain": "thunder-bg",
+  "thunder-showers-day": "thunder-bg",
+  "thunder-showers-night": "thunder-bg",
+
+  "clear-day": "day-bg",
+  "partly-cloudy-day": "day-bg",
+  "cloudy": "day-bg",
+  "snow": "snow-bg",
 };
 
 function renderWeather(weatherObj) {
@@ -103,24 +115,23 @@ function renderForecast(forecastData) {
 
 }
 
+function updateBgImg(iconId) {
+  const mainElement = document.getElementById("main");
+  const newBgClass = BG_MAP[iconId] || "day-bg";
+
+  if (mainElement.classList.contains(newBgClass)) return;
+
+  mainElement.classList.remove("day-bg", "night-bg", "rain-bg");
+
+  mainElement.classList.add(newBgClass);
+}
+
 function formatForecastDate(dateStr) {
   const date = new Date(dateStr + 'T00:00:00');
   const dayIndex = date.getUTCDay();
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return dayNames[dayIndex];
-}
-
-function updateBgImg(iconId) {
-  const mainElement = document.getElementById("main");
-  console.log(iconId);
-  if (iconId.includes('night')) {
-    mainElement.classList.remove('day-bg');
-    mainElement.classList.add('night-bg');
-  } else {
-    mainElement.classList.remove('night-bg');
-    mainElement.classList.add('day-bg');
-  }
 }
 
 export function renderApp(fullData) {

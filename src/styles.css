@@ -19,14 +19,26 @@
 }
 
 .day-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('./assets/day-bg.jpg');
+  background-image: url('./assets/day-bg.jpg');
 }
 
 .night-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  background-image:
     url('./assets/night-bg.jpg');
 }
+
+.rain-bg {
+  background-image: url('./assets/rainy-bg.jpg');
+}
+
+.snow-bg {
+  background-image: url('./assets/snow-bg.jpg');
+}
+
+.thunder-bg {
+  background-image: url('./assets/thunder-bg.jpg');
+}
+
 
 #search-container {
   padding-top: 25px;
@@ -37,7 +49,6 @@
   width: 285px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  ;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(5px);
   outline: none;
@@ -224,9 +235,14 @@ footer {
   width: 100%;
   padding: 20px 0;
   margin-top: auto;
-  gap: 15px;
+  gap: 10px;
   color: rgba(255, 255, 255, 0.6);
   font-size: 15px;
+}
+
+footer p {
+  display: flex;
+  gap: 6px;
 }
 
 footer a {
@@ -265,8 +281,3 @@ footer a:hover {
     gap: 15px;
   }
 }
-
-
-/* bg-night:  <a href="https://www.vecteezy.com/free-vector/cloud">Cloud Vectors by Vecteezy</a> */
-
-/* bg-day: <a href="https://www.vecteezy.com/free-vector/forecast">Forecast Vectors by Vecteezy</a> */
