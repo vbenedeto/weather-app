@@ -12,10 +12,20 @@
   align-items: center;
   text-align: center;
   min-height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('./assets/blue-sky.jpg');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+  transition: background-image 0.8s ease-in-out;
+}
+
+.day-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('./assets/day-bg.jpg');
+}
+
+.night-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('./assets/night-bg.jpg');
 }
 
 #search-container {
@@ -237,7 +247,7 @@ footer a:hover {
 
 @media (max-width: 600px) {
   #weather-container {
-   width: 92%;
+    width: 92%;
     max-width: none;
     padding: 20px;
     margin: 20px auto;
@@ -252,6 +262,11 @@ footer a:hover {
 
 @media (max-width: 900px) {
   #forecast-container {
-    gap: 15px; 
+    gap: 15px;
   }
 }
+
+
+/* bg-night:  <a href="https://www.vecteezy.com/free-vector/cloud">Cloud Vectors by Vecteezy</a> */
+
+/* bg-day: <a href="https://www.vecteezy.com/free-vector/forecast">Forecast Vectors by Vecteezy</a> */

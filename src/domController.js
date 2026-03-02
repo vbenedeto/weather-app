@@ -1,15 +1,15 @@
-import sunIcon from './assets/sun.png';
-import moonIcon from './assets/moon.png';
-import cloudIcon from './assets/cloudy.png';
-import cloudyDayIcon from './assets/cloudy-day.png';
-import cloudNigthIcon from './assets/cloudy-night.png';
-import rainIcon from './assets/rain.png';
-import thunderIcon from './assets/thunderstorm.png';
-import snowIcon from './assets/snow.png';
-import snowNightIcon from './assets/snow-night.png';
-import windIcon from './assets/wind.png';
-import fogIcon from './assets/fog.png';
-import defaultIcon from './assets/default.png';
+import sunIcon from './assets/icons/sun.png';
+import moonIcon from './assets/icons/moon.png';
+import cloudIcon from './assets/icons/cloudy.png';
+import cloudyDayIcon from './assets/icons/cloudy-day.png';
+import cloudNigthIcon from './assets/icons/cloudy-night.png';
+import rainIcon from './assets/icons/rain.png';
+import thunderIcon from './assets/icons/thunderstorm.png';
+import snowIcon from './assets/icons/snow.png';
+import snowNightIcon from './assets/icons/snow-night.png';
+import windIcon from './assets/icons/wind.png';
+import fogIcon from './assets/icons/fog.png';
+import defaultIcon from './assets/icons/default.png';
 
 let currentWeatherData = null;
 let isCelsius = true;
@@ -111,9 +111,23 @@ function formatForecastDate(dateStr) {
   return dayNames[dayIndex];
 }
 
+function updateBgImg(iconId) {
+  const mainElement = document.getElementById("main");
+  console.log(iconId);
+  if (iconId.includes('night')) {
+    mainElement.classList.remove('day-bg');
+    mainElement.classList.add('night-bg');
+  } else {
+    mainElement.classList.remove('night-bg');
+    mainElement.classList.add('day-bg');
+  }
+}
+
 export function renderApp(fullData) {
   currentWeatherData = fullData;
 
+  updateBgImg(fullData.current.icon);
+  
   renderWeather(fullData.current);
   renderForecast(fullData.forecast);
 }

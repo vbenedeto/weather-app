@@ -1,12 +1,30 @@
 
+function fahrenheitToCelsius(f) {
+  if (f === undefined || f === null) return null;
+
+  const celsius = (f - 32) * 5 / 9;
+  return Math.round(celsius) + 0;
+}
+
+function getDisplayLocation(resolvedAddress) {
+  const isCoords = /^-?\d+\.?\d*,-?\d+\.?\d*$/.test(resolvedAddress);
+
+  if (isCoords) {
+    return "Current Location";
+  }
+
+  return resolvedAddress;
+}
+
 export function createWeatherModel(rawData) {
   const fahrenheitTemp = rawData.currentConditions.temp;
   const fahrenheitFeelslikeTemp = rawData.currentConditions.feelslike;
 
   return {
     current: {
-      location: rawData.resolvedAddress,
+      location: getDisplayLocation(rawData.resolvedAddress),
       timezone: rawData.timezone,
+      icon: rawData.currentConditions.icon,
       feelsLikeF: Math.round(fahrenheitFeelslikeTemp),
       feelsLikeC: fahrenheitToCelsius(fahrenheitFeelslikeTemp),
       tempF: Math.round(fahrenheitTemp),
@@ -28,10 +46,4 @@ export function createWeatherModel(rawData) {
   }
 }
 
-function fahrenheitToCelsius(f) {
-  if (f === undefined || f === null) return null;
-
-  const celsius = (f - 32) * 5 / 9;
-  return Math.round(celsius) + 0;
-}
 
