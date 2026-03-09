@@ -121,7 +121,7 @@ function updateBgImg(iconId) {
 
   if (mainElement.classList.contains(newBgClass)) return;
 
-  mainElement.classList.remove("day-bg", "night-bg", "rain-bg");
+  mainElement.classList.remove("day-bg", "night-bg", "rain-bg", "thunder-bg", "snow-bg");
 
   mainElement.classList.add(newBgClass);
 }
@@ -170,4 +170,19 @@ export function setUpUnitToggle() {
       }
     });
   });
+}
+
+export function toggleLoading(isLoading) {
+  const loadingContainer = document.getElementById("loading-container");
+  const weatherContainer = document.getElementById("weather-container");
+  const forecastContainer = document.getElementById("forecast-container");
+
+  if (isLoading) {
+    loadingContainer.classList.remove("hidden");
+    weatherContainer.classList.add("hidden");
+    forecastContainer.classList.add("hidden");
+  } else {
+    loadingContainer.classList.add("hidden");
+    forecastContainer.classList.remove("hidden");
+  }
 }

@@ -11,15 +11,21 @@
 </head>
 
 <body>
-  <div id="main">
+  <div id="main" class="day-bg">
     <div id="search-container">
       <form id="form">
         <img src="assets/icons/search-icon.svg" id="search-icon" alt="Search Icon">
-        <input id="search" aria-label="Search city weather" type="search" placeholder="Search a city" autocomplete="off">
+        <input id="search" aria-label="Search city weather" type="search" placeholder="Search a city"
+          autocomplete="off">
       </form>
     </div>
 
-    <div id="weather-container" class="hidden">
+    <div id="loading-container" class="hidden">
+      <img src="./assets/icons/sun.png" class="weather-spinner" alt="Loading...">
+      <p>Loading weather...</p>
+    </div>
+
+    <div id="weather-container">
       <div id="unit-toggle-container" class="segmented-control">
         <input type="radio" id="celsius" name="unit" value="C" checked>
         <label for="celsius">°C</label>
@@ -50,8 +56,9 @@
     <footer>
       <p>Website created by <a href="https://github.com/vbenedeto" target="_blank">Vittoria Benedeto</a></p>
       <span class="separator">|</span>
-      <p>Weather graphics by <a href="https://www.freepik.com">Freepik</a> - <a href="https://www.flaticon.com/free-icons/meteorology" title="meteorology icons">
-        Flaticon</a></p>
+      <p>Weather graphics by <a href="https://www.freepik.com">Freepik</a> - <a
+          href="https://www.flaticon.com/free-icons/meteorology" title="meteorology icons">
+          Flaticon</a></p>
     </footer>
   </div>
 </body>
