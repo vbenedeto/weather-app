@@ -1,7 +1,7 @@
 import './styles.css';
 import { getData } from './api.js';
 import { createWeatherModel } from './weatherDataProcessor.js';
-import { renderApp, setUpSearchEventListener, setUpUnitToggle, toggleLoading } from './domController.js';
+import { renderApp, setUpSearchEventListener, setUpUnitToggle, showError, toggleLoading } from './domController.js';
 
 // Retrieves raw Weather Data and transforms it into a clean Obj 
 async function handleWeatherSearch(locationInput) {
@@ -11,7 +11,7 @@ async function handleWeatherSearch(locationInput) {
     const rawWeatherData = await getData(locationInput);
 
     if (!rawWeatherData) {
-      console.error("No data received from API");
+      showError(`We couldn't find "${locationInput}". Check the spelling and try again.`)
       return;
     }
 
@@ -20,6 +20,7 @@ async function handleWeatherSearch(locationInput) {
     console.log("Success! Clean data obj:", weatherObj);
   } catch (error) {
     console.error(error);
+    showError("Something went wrong with the network. Try again later.");
   } finally {
     toggleLoading(false);
   }

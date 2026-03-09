@@ -98,6 +98,19 @@ input[type="search"]::-webkit-search-cancel-button {
   z-index: 2;
 }
 
+/* Error Component */
+#error-container {
+  background: #ff646433;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px 35px;
+  border-radius: 20px;
+  border: 1px solid #ffffff4d;
+  text-align: center;
+  margin-top: auto;
+  font-weight: 500;
+}
+
 /* Loading Component */
 #loading-container {
   display: flex;
