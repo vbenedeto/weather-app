@@ -176,7 +176,7 @@ export function setUpUnitToggle() {
 export function showError(message) {
   const errorContainer = document.getElementById("error-container");
   const weatherContainer = document.getElementById("weather-container");
-  const forecastContainer = document.getElementById("forecast-container")
+  const forecastContainer = document.getElementById("forecast-container");
 
   document.getElementById("error-message").textContent = message;
 

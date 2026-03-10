@@ -7,20 +7,24 @@ import { renderApp, setUpSearchEventListener, setUpUnitToggle, showError, toggle
 async function handleWeatherSearch(locationInput) {
   try {
     toggleLoading(true);
-
     const rawWeatherData = await getData(locationInput);
+    
+    const weatherObj = createWeatherModel(rawWeatherData);
 
-    if (!rawWeatherData) {
-      showError(`We couldn't find "${locationInput}". Check the spelling and try again.`)
-      return;
+    renderApp(weatherObj);
+  } catch (error) {
+    console.error("Search Error:", error.message);
+
+    if (error.message === "OFFLINE") {
+      showError("No internet connection. Please check your network.");
+    } else if (error.message === "NOT_FOUND") {
+      showError(`We couldn't find "${locationInput}". Check the spelling and try again.`);
+    } else if (error.message === "RATE_LIMIT") {
+      showError("Daily search limit reached. Please try again tomorrow!");
+    } else {
+      showError("An unexpected error occurred. Please try again later.");
     }
 
-    const weatherObj = createWeatherModel(rawWeatherData);
-    renderApp(weatherObj);
-    console.log("Success! Clean data obj:", weatherObj);
-  } catch (error) {
-    console.error(error);
-    showError("Something went wrong with the network. Try again later.");
   } finally {
     toggleLoading(false);
   }
