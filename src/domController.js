@@ -128,11 +128,11 @@ function updateBgImg(iconId) {
 }
 
 function formatForecastDate(dateStr) {
-  const date = new Date(dateStr + 'T00:00:00');
-  const dayIndex = date.getUTCDay();
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  return dayNames[dayIndex];
+  return dayNames[date.getDay()];
 }
 
 export function renderApp(fullData) {

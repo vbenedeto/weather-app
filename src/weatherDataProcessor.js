@@ -32,7 +32,7 @@ export function createWeatherModel(rawData) {
       description: rawData.description,
       alerts: rawData.alerts ? rawData.alerts.map(item => item.event) : []
     },
-    forecast: rawData.days.slice(0, 7).map(day => {
+    forecast: rawData.days.slice(1, 8).map(day => {
       return {
         date: day.datetime,
         tempMaxF: Math.round(day.tempmax),
