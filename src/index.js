@@ -1,25 +1,30 @@
 import './styles.css';
 import { getData } from './api.js';
 import { createWeatherModel } from './weatherDataProcessor.js';
-import { renderApp, setUpSearchEventListener, setUpUnitToggle, toggleLoading } from './domController.js';
+import { renderApp, setUpSearchEventListener, setUpUnitToggle, showError, toggleLoading } from './domController.js';
 
 // Retrieves raw Weather Data and transforms it into a clean Obj 
 async function handleWeatherSearch(locationInput) {
   try {
     toggleLoading(true);
-
     const rawWeatherData = await getData(locationInput);
+    
+    const weatherObj = createWeatherModel(rawWeatherData);
 
-    if (!rawWeatherData) {
-      console.error("No data received from API");
-      return;
+    renderApp(weatherObj);
+  } catch (error) {
+    console.error("Search Error:", error.message);
+
+    if (error.message === "OFFLINE") {
+      showError("No internet connection. Please check your network.");
+    } else if (error.message === "NOT_FOUND") {
+      showError(`We couldn't find "${locationInput}". Check the spelling and try again.`);
+    } else if (error.message === "RATE_LIMIT") {
+      showError("Daily search limit reached. Please try again tomorrow!");
+    } else {
+      showError("An unexpected error occurred. Please try again later.");
     }
 
-    const weatherObj = createWeatherModel(rawWeatherData);
-    renderApp(weatherObj);
-    console.log("Success! Clean data obj:", weatherObj);
-  } catch (error) {
-    console.error(error);
   } finally {
     toggleLoading(false);
   }

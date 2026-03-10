@@ -113,6 +113,7 @@ function renderForecast(forecastData) {
     forecastContainer.appendChild(card);
   });
 
+  forecastContainer.classList.remove("hidden");
 }
 
 function updateBgImg(iconId) {
@@ -127,11 +128,11 @@ function updateBgImg(iconId) {
 }
 
 function formatForecastDate(dateStr) {
-  const date = new Date(dateStr + 'T00:00:00');
-  const dayIndex = date.getUTCDay();
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  return dayNames[dayIndex];
+  return dayNames[date.getDay()];
 }
 
 export function renderApp(fullData) {
@@ -172,17 +173,30 @@ export function setUpUnitToggle() {
   });
 }
 
+export function showError(message) {
+  const errorContainer = document.getElementById("error-container");
+  const weatherContainer = document.getElementById("weather-container");
+  const forecastContainer = document.getElementById("forecast-container");
+
+  document.getElementById("error-message").textContent = message;
+
+  errorContainer.classList.remove("hidden");
+  weatherContainer.classList.add("hidden");
+  forecastContainer.classList.add("hidden");
+}
+
 export function toggleLoading(isLoading) {
   const loadingContainer = document.getElementById("loading-container");
   const weatherContainer = document.getElementById("weather-container");
   const forecastContainer = document.getElementById("forecast-container");
+  const errorContainer = document.getElementById("error-container");
 
   if (isLoading) {
     loadingContainer.classList.remove("hidden");
     weatherContainer.classList.add("hidden");
     forecastContainer.classList.add("hidden");
+    if (errorContainer) errorContainer.classList.add("hidden");
   } else {
     loadingContainer.classList.add("hidden");
-    forecastContainer.classList.remove("hidden");
   }
 }

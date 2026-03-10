@@ -3,6 +3,10 @@ import { mockWeatherData } from "./mockData.js";
 const USE_MOCK_DATA = true;
 
 export async function getData(location) {
+  if (!navigator.onLine) {
+    throw new Error("OFFLINE");
+  }
+
   if (USE_MOCK_DATA) {
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log("--- Using Mock Data ---:", mockWeatherData);
@@ -14,17 +18,18 @@ export async function getData(location) {
   try {
     const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    if (response.status === 429) throw new Error("RATE_LIMIT");
+    if (response.status === 401) throw new Error("INVALID_KEY");
+    if (!response.ok) throw new Error("NOT_FOUND");
 
     const result = await response.json();
-    console.log(result);
 
+    if (!result.currentConditions || !result.days) throw new Error("MALFORMED_DATA");
+
+    console.log("API result:", result);
     return result;
   } catch (error) {
-    console.log(error);
-    return null;
+    throw error;
   }
 }
 
