@@ -5,7 +5,7 @@ A clean, responsive weather dashboard featuring a glassmorphism UI and dynamic b
 ### Features
 * **Automatic Location:**: Detects your current city via Geolocation API on startup.
 * **Global Search**: Supports searches by city name, state, or coordinates (latitude/longitude).
-* **Dynamic Themes**: Backgrounds and UI colors/icons shift based on weather conditions (Clear, Rain, Night, etc.).
+* **Dynamic Themes**: Backgrounds and UI Icons shift based on weather conditions (Clear, Rain, Night, etc.).
 * **7-Day Forecast**: Weekly outlook with high/low temperatures and conditions.
 * **Error Handling**: UI states for invalid city searches or network issues.
 * **Unit Toggling**: Switch between Celsius and Fahrenheit instantly.
@@ -36,5 +36,6 @@ A clean, responsive weather dashboard featuring a glassmorphism UI and dynamic b
    npm run build
    ```
 
-. **Mock Data**
+5. **Mock Data**
    Toggle the ***USE_MOCK_DATA*** flag in **api.js** to test without hitting API limits.
+   
