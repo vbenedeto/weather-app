@@ -1,6 +1,6 @@
 import { mockWeatherData } from "./mockData.js";
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 export async function getData(location) {
   if (!navigator.onLine) {
@@ -26,7 +26,6 @@ export async function getData(location) {
 
     if (!result.currentConditions || !result.days) throw new Error("MALFORMED_DATA");
 
-    console.log("API result:", result);
     return result;
   } catch (error) {
     throw error;

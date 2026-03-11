@@ -25,6 +25,7 @@ export function createWeatherModel(rawData) {
       location: getDisplayLocation(rawData.resolvedAddress),
       timezone: rawData.timezone,
       icon: rawData.currentConditions.icon,
+      conditions: rawData.currentConditions.conditions,
       feelsLikeF: Math.round(fahrenheitFeelslikeTemp),
       feelsLikeC: fahrenheitToCelsius(fahrenheitFeelslikeTemp),
       tempF: Math.round(fahrenheitTemp),

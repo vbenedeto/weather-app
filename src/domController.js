@@ -23,7 +23,7 @@ const ICON_MAP = {
   "partly-cloudy-night": cloudNigthIcon,
 
   "rain": rainIcon,
-  "showers-day": rainIcon, 
+  "showers-day": rainIcon,
   "showers-night": rainIcon,
   "thunder-rain": thunderIcon,
 
@@ -59,6 +59,7 @@ function renderWeather(weatherObj) {
   const weatherContainer = document.getElementById("weather-container");
   const tempElement = document.getElementById("temp");
   const feelsLikeElement = document.getElementById("feels-like");
+  const iconImg = document.getElementById("current-weather-icon");
 
   if (isCelsius) {
     tempElement.textContent = `${weatherObj.tempC} °C`
@@ -66,6 +67,11 @@ function renderWeather(weatherObj) {
   } else {
     tempElement.textContent = `${weatherObj.tempF} °F`;
     feelsLikeElement.textContent = `Feels Like: ${weatherObj.feelsLikeF} °F`;
+  }
+
+  if (iconImg) {
+    iconImg.src = ICON_MAP[weatherObj.icon] || ICON_MAP["default"];
+    iconImg.alt = weatherObj.conditions;
   }
 
   document.getElementById("city-name").textContent = weatherObj.location;
@@ -139,7 +145,7 @@ export function renderApp(fullData) {
   currentWeatherData = fullData;
 
   updateBgImg(fullData.current.icon);
-  
+
   renderWeather(fullData.current);
   renderForecast(fullData.forecast);
 }
